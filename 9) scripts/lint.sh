@@ -1,0 +1,2 @@
+ruff check . || pyflakes .
+echo $?

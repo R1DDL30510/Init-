@@ -1,0 +1,21 @@
+.PHONY: run plan test lint check commit
+
+run:
+	@if ($IsWindows) { .\scripts\run.ps1 } else { ./scripts/run.sh }
+
+plan:
+	make plan
+
+test:
+	@if ($IsWindows) { .\scripts\test.ps1 } else { ./scripts\test.sh }
+
+lint:
+	@if ($IsWindows) { .\scripts\lint.ps1 } else { ./scripts/lint.sh }
+
+check:
+	@if ($IsWindows) { .\scripts\check.ps1 } else { ./scripts/check.sh }
+
+commit:
+	git add .
+	git commit -m "Update workflow"
+	git push

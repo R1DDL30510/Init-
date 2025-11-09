@@ -1,0 +1,13 @@
+profiles:
+  - architect:
+      mode: architect
+      edit_format: whole
+  - code:
+      mode: code
+      edit_format: udiff
+  - context:
+      mode: context
+  - review:
+      mode: code
+      edit_format: uddiff
+      system_prompt: "Review only; suggest, don’t edit."
