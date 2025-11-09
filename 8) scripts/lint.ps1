@@ -1,6 +1,6 @@
 ruff check . || pyflakes .
 if ($LASTEXITCODE -ne 0) {
-    Write-Output "Lint errors detected."
+    Write-Output "Линтерские ошибки обнаружены."
     exit 1
 }
-Write-Output "No lint errors."
+Write-Output "Нет линтерских ошибок."
