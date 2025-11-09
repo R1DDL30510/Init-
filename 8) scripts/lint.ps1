@@ -1,9 +1,7 @@
 try {
-    ruff check . -ErrorAction Stop
+    ruff check . -ErrorAction Stop || pyflakes .
 } catch {
-    pyflakes .
-    if ($LASTEXITCODE -ne 0) {
-        Write-Output "Линтерские ошибки обнаружены."
-        exit 1
-    }
+    Write-Output "Линтерские ошибки обнаружены."
+    exit 1
 }
+Write-Output "Нет линтерских ошибок."
