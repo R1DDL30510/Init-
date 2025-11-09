@@ -1,0 +1,39 @@
+                                                                                
+HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /BerriAI/litellm/main/model_prices_and_context_window.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a6557adf980>: Failed to resolve 'raw.githubusercontent.com' ([Errno -2] Name or service not known)"))
+OllamaError: Error getting model info for qwen2.5-coder:14b. Set Ollama API Base via `OLLAMA_API_BASE` environment variable. Error: [Errno 1] Operation not permitted
+HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /BerriAI/litellm/main/model_prices_and_context_window.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a654ec2f710>: Failed to resolve 'raw.githubusercontent.com' ([Errno -2] Name or service not known)"))
+OllamaError: Error getting model info for qwen3:4b. Set Ollama API Base via `OLLAMA_API_BASE` environment variable. Error: [Errno 1] Operation not permitted
+Aider v0.86.1
+Main model: ollama_chat/qwen2.5-coder:14b with udiff edit format
+Weak model: ollama_chat/qwen3:4b
+Git repo: .git with 62 files
+Repo-map: using 1024 tokens, auto refresh
+Added docs/TEST.md to the chat.
+
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+Retrying in 0.2 seconds...
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+Retrying in 0.5 seconds...
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+Retrying in 1.0 seconds...
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+Retrying in 2.0 seconds...
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+Retrying in 4.0 seconds...
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+Retrying in 8.0 seconds...
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+Retrying in 16.0 seconds...
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+Retrying in 32.0 seconds...
+litellm.APIConnectionError: Ollama_chatException - [Errno 1] Operation not 
+permitted
+

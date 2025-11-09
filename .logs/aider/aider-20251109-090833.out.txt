@@ -1,0 +1,11 @@
+                                                                                
+Aider v0.86.1
+Main model: ollama_chat/qwen2.5-coder:14b with udiff edit format
+Weak model: ollama_chat/qwen3:4b
+Git repo: .git with 62 files
+Repo-map: using 4096.0 tokens, auto refresh
+Added docs/TEST.md to the chat.
+
+Ok.                                                                             
+
+Tokens: 3.1k sent, 2 received.

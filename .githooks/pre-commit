@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "[pre-commit] make check"
-make check
+make test lint

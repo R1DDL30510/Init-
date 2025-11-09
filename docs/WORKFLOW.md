@@ -92,13 +92,28 @@ Performs local-only health checks: `docker compose ps --format json`, `docker in
 - Linux/macOS/WSL: uses `scripts/aider_call.sh`
 - Deterministic target:
   ```bash
-  make aider MSG="Fix typos in README" FILES="README.md"
+  make aider MSG="Fix typos in README" FILES="docs/TEST.md"
   ```
 - JSON summary (Codex monitoring):
   ```bash
-  make aider MSG="Patch manifest" FILES="MANIFEST.md" RETURNJSON=1
+  make aider MSG="Patch manifest" FILES="docs/TEST.md" RETURNJSON=1
   ```
-Both wrappers pin `OLLAMA_API_BASE` to `http://127.0.0.1:11434`, sanitize stdout to ASCII, log to `.logs/aider/aider-*.{out,err,meta}.txt/json`, and propagate aider's exit code. NOTE: `.aider.conf.yml` must define `profiles:` as a YAML mapping (see repo root), and injecting `--profiles=...` via CLI aliases is invalid—use `/profile review` or `--profile review` inside aider instead.
+Use `docs/TEST.md` as the safe fixture for wrapper dry-runs. Both wrappers pin `OLLAMA_API_BASE` to the Windows-hosted daemon at `http://172.23.176.1:11434`, sanitize stdout to ASCII, log to `.logs/aider/aider-*.{out,err,meta}.txt/json`, and propagate aider's exit code. NOTE: the canonical profile definitions now live in `docs/AIDER_PROFILES.yml`; do **not** reintroduce `profiles:` into `.aider.conf.yml`—select profiles at runtime via `/profile review` or `--profile review` inside aider instead.
+
+> **Verification**
+> POSIX (zsh/bash):
+> ```bash
+> bash scripts/aider_call.sh --Prompt "Echo ok" --Files docs/TEST.md || true
+> make aider MSG="Echo ok" FILES="docs/TEST.md" || true
+> make aider-json MSG="Echo ok" FILES="docs/TEST.md" || true
+> ```
+> Windows (PowerShell):
+> ```powershell
+> pwsh -File scripts/aider_call.ps1 -Prompt "Echo ok" -Files docs/TEST.md
+> make aider MSG="Echo ok" FILES="docs/TEST.md"
+> make aider-json MSG="Echo ok" FILES="docs/TEST.md"
+> ```
+> NOTE: If `aider` not found, restart the shell so PATH refreshes.
 
 ## Aider UI Run
 ```

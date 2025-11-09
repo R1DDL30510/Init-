@@ -75,7 +75,7 @@ aider: ## Run aider via deterministic wrapper (PowerShell on Windows, Bash elsew
 	branch="$(strip $(BRANCH))"; \
 	save_flag="$(strip $(SAVE))"; \
 	return_json="$(strip $(RETURNJSON))"; \
-	if [ "${OS:-}" = 'Windows_NT' ]; then \
+	if [ "$${OS:-}" = 'Windows_NT' ]; then \
 	  runner=(pwsh -NoLogo -NoProfile -File scripts/aider_call.ps1 -Prompt "$$msg"); \
 	  files_flag='-Files'; \
 	  branch_flag='-Branch'; \
@@ -101,7 +101,7 @@ aider: ## Run aider via deterministic wrapper (PowerShell on Windows, Bash elsew
 	if [ -n "$$return_json" ] && [ "$$return_json" != '0' ]; then \
 	  runner+=("$$json_switch"); \
 	fi; \
-	"${runner[@]}"
+	"$${runner[@]}"
 
 aider-json: ## Run aider target and force JSON output
 	@$(MAKE) --no-print-directory aider RETURNJSON=1

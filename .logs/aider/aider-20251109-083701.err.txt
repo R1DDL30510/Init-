@@ -1,0 +1,1 @@
+/home/akrin/bin/aider: line 22: /home/akrin/.local/share/pipx/venvs/aider-chat/bin/aider: No such file or directory

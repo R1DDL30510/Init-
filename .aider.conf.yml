@@ -3,16 +3,6 @@ weak-model: ollama_chat/qwen3:4b
 edit-format: udiff
 no-show-model-warnings: true
 
-profiles:
-  architect:
-    mode: architect
-    edit_format: whole
-  code:
-    mode: code
-    edit_format: udiff
-  context:
-    mode: context
-  review:
-    mode: code
-    edit_format: udiff
-    system_prompt: "Review only; suggest, do not edit."
+# NOTE: aider 0.86.1 treats unknown config keys as pseudo-CLI arguments, so the
+# historical `profiles:` mapping now lives in docs/AIDER_PROFILES.yml where it
+# can be referenced manually without breaking aider launches.

@@ -45,8 +45,14 @@ def resolve_files(repo: Path, files: List[str] | None) -> List[str]:
     return resolved
 
 
-def build_command(files: List[str], model: str, weak_model: str | None,
-                  edit_format: str, prompt: str, extras: List[str]) -> List[str]:
+def build_command(
+    files: List[str],
+    model: str,
+    weak_model: str | None,
+    edit_format: str,
+    prompt: str,
+    aider_args: List[str],
+) -> List[str]:
     cmd: List[str] = [shutil.which("aider") or ""]
     if not cmd[0]:
         raise SystemExit("aider binary not found in PATH.")
@@ -54,8 +60,18 @@ def build_command(files: List[str], model: str, weak_model: str | None,
     cmd.extend(["--model", model])
     if weak_model:
         cmd.extend(["--weak-model", weak_model])
-    cmd.extend(["--edit-format", edit_format, "--no-show-model-warnings", "--message", prompt])
-    cmd.extend(extras)
+    cmd.extend(
+        [
+            "--edit-format",
+            edit_format,
+            "--no-show-model-warnings",
+            "--no-check-update",
+            "--message",
+            prompt,
+        ]
+    )
+    if aider_args:
+        cmd.extend(to_ascii(arg) for arg in aider_args if arg)
     return cmd
 
 
@@ -91,9 +107,17 @@ def main(argv: List[str] | None = None) -> int:
     parser.add_argument("--Save", dest="save", action="store_true")
     parser.add_argument("--Model", dest="model", default=DEFAULT_MODEL)
     parser.add_argument("--WeakModel", dest="weak_model", default=DEFAULT_WEAK_MODEL)
-    parser.add_argument("--EditFormat", dest="edit_format", choices=["udiff", "whole"], default=DEFAULT_EDIT_FORMAT)
+    parser.add_argument(
+        "--EditFormat",
+        dest="edit_format",
+        choices=["udiff", "whole"],
+        default=DEFAULT_EDIT_FORMAT,
+    )
     parser.add_argument("--RepoPath", dest="repo_path", default=".")
-    args, extras = parser.parse_known_args(argv)
+    parser.add_argument(
+        "--AiderArgs", dest="aider_args", nargs=argparse.REMAINDER, default=[]
+    )
+    args = parser.parse_args(argv)
 
     prompt, prompt_source = read_prompt(args.prompt, args.prompt_file)
     prompt = apply_prefix(prompt, args.branch, args.save)
@@ -103,10 +127,12 @@ def main(argv: List[str] | None = None) -> int:
     log_dir.mkdir(parents=True, exist_ok=True)
 
     files = resolve_files(repo, args.files)
-    cmd = build_command(files, args.model, args.weak_model, args.edit_format, prompt, extras)
+    cmd = build_command(
+        files, args.model, args.weak_model, args.edit_format, prompt, args.aider_args
+    )
 
     env = os.environ.copy()
-    env.setdefault("OLLAMA_API_BASE", "http://127.0.0.1:11434")
+    env.setdefault("OLLAMA_API_BASE", "http://172.23.176.1:11434")
 
     timestamp, started_at = time_marker()
     stdout_path = log_dir / f"aider-{timestamp}.out.txt"
@@ -140,7 +166,10 @@ def main(argv: List[str] | None = None) -> int:
         "stderrFile": str(stderr_path),
         "exitCode": result.returncode,
     }
-    meta_path.write_text(json.dumps(meta, separators=(",", ":"), ensure_ascii=True) + "\n", encoding="ascii")
+    meta_path.write_text(
+        json.dumps(meta, separators=(",", ":"), ensure_ascii=True) + "\n",
+        encoding="ascii",
+    )
 
     if args.return_json:
         summary = {
@@ -156,7 +185,7 @@ def main(argv: List[str] | None = None) -> int:
             "stderrFile": str(stderr_path),
             "output": stdout_text.rstrip("\r\n"),
         }
-        print(json.dumps(summary, separators=(",", ":")))
+        sys.stdout.write(json.dumps(summary, separators=(",", ":")))
     else:
         if stdout_text:
             sys.stdout.write(stdout_text)

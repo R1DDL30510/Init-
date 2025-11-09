@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/akrin/.local/share/pipx/venvs/aider-chat/bin/aider", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/akrin/.local/share/pipx/venvs/aider-chat/lib/python3.12/site-packages/aider/main.py", line 692, in main
+    if Path(fname).is_dir():
+       ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 877, in is_dir
+    return S_ISDIR(self.stat().st_mode)
+                   ^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 842, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 36] File name too long: "--profiles={'architect': {'mode': 'architect', 'edit_format': 'whole'}, 'code': {'mode': 'code', 'edit_format': 'udiff'}, 'context': {'mode': 'context'}, 'review': {'mode': 'code', 'edit_format': 'udiff', 'system_prompt': 'Review only; suggest, do not edit.'}}"
+gio: https://github.com/Aider-AI/aider/issues/new?body=Aider+version%3A+0.86.1%0APython+version%3A+3.12.3%0APlatform%3A+Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39%0APython+implementation%3A+CPython%0AVirtual+environment%3A+Yes%0AOS%3A+Linux+6.6.87.2-microsoft-standard-WSL2+%2864bit%29%0AGit+version%3A+git+version+2.43.0%0A%0AAn+uncaught+exception+occurred%3A%0A%0A%60%60%60%0ATraceback+%28most+recent+call+last%29%3A%0A++File+%22aider%22%2C+line+7%2C+in+%3Cmodule%3E%0A++++sys.exit%28main%28%29%29%0A+++++++++++++%5E%5E%5E%5E%5E%5E%0A++File+%22main.py%22%2C+line+692%2C+in+main%0A++++if+Path%28fname%29.is_dir%28%29%3A%0A+++++++%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%0A++File+%22pathlib.py%22%2C+line+877%2C+in+is_dir%0A++++return+S_ISDIR%28self.stat%28%29.st_mode%29%0A+++++++++++++++++++%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%0A++File+%22pathlib.py%22%2C+line+842%2C+in+stat%0A++++return+os.stat%28self%2C+follow_symlinks%3Dfollow_symlinks%29%0A+++++++++++%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%0AOSError%3A+%5BErrno+36%5D+File+name+too+long%3A+%22--profiles%3D%7B%27architect%27%3A+%7B%27mode%27%3A+%27architect%27%2C+%27edit_format%27%3A+%27whole%27%7D%2C+%27code%27%3A+%7B%27mode%27%3A+%27code%27%2C+%27edit_format%27%3A+%27udiff%27%7D%2C+%27context%27%3A+%7B%27mode%27%3A+%27context%27%7D%2C+%27review%27%3A+%7B%27mode%27%3A+%27code%27%2C+%27edit_format%27%3A+%27udiff%27%2C+%27system_prompt%27%3A+%27Review+only%3B+suggest%2C+do+not+edit.%27%7D%7D%22%0A%0A%60%60%60&title=Uncaught+OSError+in+pathlib.py+line+842: Operation not supported

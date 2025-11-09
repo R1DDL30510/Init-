@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-python -m unittest discover -s tests
+python -m unittest -q
+
+printf 'TEST_OK'

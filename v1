@@ -1,0 +1,3 @@
+/drop
+/add       src\cli.py
+/add       tests\test_plugin_loading.py

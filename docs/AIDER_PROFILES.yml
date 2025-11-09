@@ -1,0 +1,15 @@
+# Canonical aider profile definitions for reference only.
+# Keep this file in sync with docs/WORKFLOW.md and scripts.
+profiles:
+  architect:
+    mode: architect
+    edit_format: whole
+  code:
+    mode: code
+    edit_format: udiff
+  context:
+    mode: context
+  review:
+    mode: code
+    edit_format: udiff
+    system_prompt: "Review only; suggest, do not edit."

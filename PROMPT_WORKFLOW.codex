@@ -1,0 +1,73 @@
+Create a reusable “Aider Workflow” for plan → save → execute → test → lint → check → commit with cross-platform scripts and a shell syntax probe. Apply determinism and local-only constraints.
+
+Artifacts to create/update:
+
+1) docs/WORKFLOW.md — concise runbook (≤120 lines) with 7 phases (Plan, Save, Execute, Test, Lint, Check, Commit). For each phase include exact commands for Bash (macOS/Linux/WSL) and PowerShell (Windows). Add sections:
+   - “Do not break syntax” rules:
+     * English ASCII messages only.
+     * Use `docker compose` (never `docker-compose`).
+     * Bash: `#!/usr/bin/env bash`, `set -euo pipefail`, quote variables, no process substitution.
+     * PowerShell: `#!/usr/bin/env pwsh`, `Set-StrictMode -Version Latest`, `$ErrorActionPreference='Stop'`, use `Join-Path`, avoid backtick line breaks.
+     * Keep each script <120 lines; local ports only; no external network.
+   - “Aider UI run” box (exact):
+     /branch polish-workflow
+     /save
+     make plan
+     make run
+     make test
+     make lint
+     make check
+     /commit "workflow wired"
+   - Final checklist.
+
+2) .aider.conf.yml — minimal profiles:
+   profiles:
+     architect: { mode: architect, edit_format: whole }
+     code: { mode: code, edit_format: udiff }
+     context: { mode: context }
+     review: { mode: code, edit_format: udiff, system_prompt: "Review only; suggest, do not edit." }
+
+3) Makefile — targets: plan, run, test, lint, check, commit, probe.
+   - `probe`: detect shell by calling scripts/syntax_probe.(sh|ps1); accept EXACT tokens: `BASH_OK` or `PS_OK`.
+   - For other targets, branch on token to call the corresponding script and exit non-zero on failure.
+   - Deterministic, local-only; no silent failures.
+
+4) scripts/syntax_probe.sh — Bash:
+   - Shebang `#!/usr/bin/env bash`; `set -euo pipefail`.
+   - Print ONLY `BASH_OK`; no other output; exit 0.
+
+5) scripts/syntax_probe.ps1 — PowerShell:
+   - Shebang `#!/usr/bin/env pwsh`; `Set-StrictMode -Version Latest`; `$ErrorActionPreference='Stop'`.
+   - Print ONLY `PS_OK`; no other output; exit 0.
+
+6) scripts/run.sh and scripts/run.ps1 — run the app without external network. Strict modes as above. On success print EXACT `RUN_OK`; exit non-zero on error.
+
+7) scripts/test.sh and scripts/test.ps1 — run `python -m unittest -q` (or repo tests). On success print EXACT `TEST_OK`; exit non-zero on failures.
+
+8) scripts/lint.sh and scripts/lint.ps1 — lightweight lint:
+   - If `ruff` config detected: run `ruff check .`.
+   - Else if pyflakes available: `python -m pyflakes .`.
+   - Else print EXACT `LINT_SKIPPED` and exit 0.
+   - Real lint errors must exit non-zero. ASCII messages only.
+
+9) scripts/check.sh and scripts/check.ps1 — service health for Supabase + n8n:
+   - Use `docker compose ps --format json` to find containers by prefix: supabase-db, supabase-api, supabase-storage, n8n.
+   - Require state “running/Up”.
+   - For each container with health, `docker inspect -f "{{.State.Health.Status}}" <name>` must be `healthy`.
+   - HTTP checks:
+     * n8n: GET http://localhost:5678/rest/health expect HTTP 200 or JSON `{"status":"ok"}`.
+     * Supabase API: GET http://localhost:8000/health expect HTTP 200.
+   - Postgres: `docker exec supabase-db pg_isready -U postgres` must exit 0.
+   - Fail fast with a single one-line reason; on success print EXACT `CHECK_OK`.
+
+10) .githooks/pre-commit (sh) and .githooks/pre-commit.ps1 — run `make test lint` and block commit on failure. Add install note in docs/WORKFLOW.md.
+
+11) docs/RESCUE_MAINTAINER.md — “Docs & Fix-Only Maintainer” policy (English, ASCII). Include: Role, Intent, Scope (docs only), Hard Limits (no behavior changes), Allowed Edits (docs/comments/links only), Acceptance Criteria (diff touches docs/comments only), Commit message templates (`docs(...)`, `fix(typo|link)`), Safety Gates, Checklist. Keep ≤120 lines.
+
+Global constraints:
+- Deterministic, offline-first; do not introduce new dependencies; do not reference `:latest`.
+- Scripts must adhere to the exact success tokens: `BASH_OK`, `PS_OK`, `RUN_OK`, `TEST_OK`, `LINT_SKIPPED`, `CHECK_OK`.
+- Use English ASCII output in all scripts.
+- Prefer environment pinning if configs already exist; otherwise use safe defaults.
+
+Deliverables must be self-contained and runnable on Windows/macOS/WSL/Linux.

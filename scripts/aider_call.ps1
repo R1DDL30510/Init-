@@ -10,7 +10,8 @@ param(
     [string]$Model = 'ollama_chat/qwen2.5-coder:14b',
     [string]$WeakModel = 'ollama_chat/qwen3:4b',
     [ValidateSet('udiff','whole')][string]$EditFormat = 'udiff',
-    [string]$RepoPath = (Get-Location).Path
+    [string]$RepoPath = (Get-Location).Path,
+    [string[]]$AiderArgs = @()
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -30,7 +31,7 @@ function Resolve-RepoItem {
 if ($PromptFile) { $Prompt = To-Ascii (Get-Content -LiteralPath $PromptFile -Raw) }
 if (-not $Prompt) { throw 'Provide -Prompt or -PromptFile.' }
 $promptSource = if ($PromptFile) { (Resolve-Path -LiteralPath $PromptFile).Path } else { 'inline' }
-if (-not $env:OLLAMA_API_BASE) { $env:OLLAMA_API_BASE = 'http://127.0.0.1:11434' }
+if (-not $env:OLLAMA_API_BASE) { $env:OLLAMA_API_BASE = 'http://172.23.176.1:11434' }
 $repo = (Resolve-Path -LiteralPath $RepoPath).Path
 $logDir = Join-Path -Path $repo -ChildPath '.logs/aider'
 if (-not (Test-Path -LiteralPath $logDir)) { New-Item -ItemType Directory -Path $logDir | Out-Null }
@@ -55,6 +56,11 @@ $argList = @('--model',$Model)
 if ($WeakModel) { $argList += @('--weak-model',$WeakModel) }
 $argList += @('--edit-format',$EditFormat,'--message',$Prompt)
 if ($filesResolved) { $argList = $filesResolved + $argList }
+if ($AiderArgs) {
+    foreach ($extra in ($AiderArgs | Where-Object { $_ })) {
+        $argList += (To-Ascii $extra)
+    }
+}
 $cmd = (Get-Command -Name 'aider' -ErrorAction Stop).Path
 $exitCode = 0
 Push-Location -LiteralPath $repo
