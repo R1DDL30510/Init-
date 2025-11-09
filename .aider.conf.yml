@@ -1,0 +1,18 @@
+model: ollama_chat/qwen2.5-coder:14b
+weak-model: ollama_chat/qwen3:4b
+edit-format: udiff
+no-show-model-warnings: true
+
+profiles:
+  architect:
+    mode: architect
+    edit_format: whole
+  code:
+    mode: code
+    edit_format: udiff
+  context:
+    mode: context
+  review:
+    mode: code
+    edit_format: udiff
+    system_prompt: "Review only; suggest, do not edit."

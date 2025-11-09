@@ -1,48 +1,122 @@
 # Aider Workflow Runbook
 
+Deterministic, offline-first sequence for plan → save → execute → test → lint → check → commit. Works on Bash/zsh (macOS, Linux, WSL) and PowerShell (Windows) without touching external networks.
 ## Plan
-- Используйте текстовый редактор для внесения изменений в файлы, которые требуют обновления.
-- Создайте план изменений в README или аналогичном файле.
+- Bash/zsh:
+  ```bash
+  make plan
+  ```
+- PowerShell:
+  ```powershell
+  make plan
+  ```
 
 ## Save
-- Выполните команду `git add <file_path>` для каждого измененного файла.
-- Зафиксируйте изменения с помощью команды `git commit -m "Описание изменений"`.
+- Bash/zsh:
+  ```bash
+  git add -A && git status --porcelain
+  ```
+- PowerShell:
+  ```powershell
+  git add -A; git status --porcelain
+  ```
 
 ## Execute
-- Для Windows: запустите скрипт `scripts/run.ps1`.
-- Для остальных систем: запустите скрипт `scripts/run.sh`.
+- Bash/zsh:
+  ```bash
+  make run
+  ```
+- PowerShell:
+  ```powershell
+  make run
+  ```
 
 ## Test
-- Для Windows: запустите скрипт `scripts/test.ps1`.
-- Для остальных систем: запустите скрипт `scripts/test.sh`.
+- Bash/zsh:
+  ```bash
+  make test
+  ```
+- PowerShell:
+  ```powershell
+  make test
+  ```
 
 ## Lint
-- Для Windows: запустите скрипт `scripts/lint.ps1`.
-- Для остальных систем: запустите скрипт `scripts/lint.sh`.
+- Bash/zsh:
+  ```bash
+  make lint
+  ```
+- PowerShell:
+  ```powershell
+  make lint
+  ```
 
 ## Check
-- Для Windows: запустите скрипт `scripts/check.ps1`.
-- Для остальных систем: запустите скрипт `scripts/check.sh`.
+- Bash/zsh:
+  ```bash
+  make check
+  ```
+- PowerShell:
+  ```powershell
+  make check
+  ```
+Performs local-only health checks: `docker compose ps --format json`, `docker inspect` health probes, `curl http://localhost:5678/rest/health` for n8n, `curl http://localhost:8000/health` for the Supabase API, and `docker exec supabase-db pg_isready -U postgres`. Ends with `CHECK_OK`; never call `docker-compose` or remote URLs.
 
 ## Commit
-- Выполните команду `git push` для отправки изменений на удаленный репозиторий.
+- Bash/zsh:
+  ```bash
+  make commit MSG="workflow wired"
+  ```
+- PowerShell:
+  ```powershell
+  make commit MSG="workflow wired"
+  ```
 
-### Final Checklist
-- Убедитесь, что все тесты прошли успешно.
-- Проверьте наличие ошибок линтинга.
-- Подтвердите, что сервисы работают корректно.
+## Do Not Break Syntax
+- English ASCII output only; local ports only; no external network requests.
+- Use `docker compose` (never `docker-compose`).
+- Bash scripts: `#!/usr/bin/env bash`, `set -euo pipefail`, quote variables, avoid process substitution, keep <120 lines.
+- PowerShell scripts: `#!/usr/bin/env pwsh`, `Set-StrictMode -Version Latest`, `$ErrorActionPreference='Stop'`, prefer `Join-Path`, avoid backtick line breaks, keep <120 lines.
 
-## How to run with Aider UI
-1. Перейдите в раздел "Branch" и выполните команду `/branch polish-workflow`.
-2. Выполните команду `/save` для сохранения изменений.
-3. Выполните команды:
-   - `make plan`
-   - `make run`
-   - `make test`
-   - `make lint`
-   - `make check`
-4. Завершите процесс командой `/commit "workflow: plan/run/test/lint/check wired"`.
+## Enable Hooks
+- Bash/zsh:
+  ```bash
+  git config core.hooksPath .githooks
+  ```
+- PowerShell:
+  ```powershell
+  git config core.hooksPath .githooks
+  ```
+## Aider Call
+- Windows (PowerShell): uses `scripts/aider_call.ps1`
+- Linux/macOS/WSL: uses `scripts/aider_call.sh`
+- Deterministic target:
+  ```bash
+  make aider MSG="Fix typos in README" FILES="README.md"
+  ```
+- JSON summary (Codex monitoring):
+  ```bash
+  make aider MSG="Patch manifest" FILES="MANIFEST.md" RETURNJSON=1
+  ```
+Both wrappers pin `OLLAMA_API_BASE` to `http://127.0.0.1:11434`, sanitize stdout to ASCII, log to `.logs/aider/aider-*.{out,err,meta}.txt/json`, and propagate aider's exit code. NOTE: `.aider.conf.yml` must define `profiles:` as a YAML mapping (see repo root), and injecting `--profiles=...` via CLI aliases is invalid—use `/profile review` or `--profile review` inside aider instead.
 
-## Minimal Troubleshooting
-- Проверьте, что Docker запущен и доступен.
-- Убедитесь, что необходимые инструменты (например, jq или pyflakes) установлены на вашей системе.
+## Aider UI Run
+```
+/branch polish-workflow
+/save
+make plan
+make run
+make test
+make lint
+make check
+/commit "workflow wired"
+```
+
+## Final Checklist
+- Plan: `make plan` prints the seven-phase overview.
+- Save: `git add -A` plus `git status --porcelain` only lists intended files.
+- Execute: `make run` prints `RUN_OK`.
+- Test: `make test` prints `TEST_OK`.
+- Lint: `make lint` prints clean output or `LINT_SKIPPED`.
+- Check: `make check` prints `CHECK_OK` after docker, HTTP, and `pg_isready` checks.
+- Commit: `make commit MSG="..."` stages workflow artifacts and confirms hooks are active.
