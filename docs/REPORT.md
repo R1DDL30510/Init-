@@ -2,45 +2,44 @@
 
 ## Struktur
 - src/
-  - cli.py – Haupt-CLI mit Subkommandos
+  - cli.py – Haupt-CLI
 - core/
-  - cli.py – Logik für hello, sum, info
-  - task_manager.py – In‑Memory‑Queue
-  - config.py – Basis‑ und Log‑Pfad
+  - cli.py – Logik
+  - task_manager.py – Queue
+  - config.py – Pfade
 - utils/
-  - helper.py – Logging, JSON‑I/O
+  - helper.py – Logging & JSON
 - plugins/
-  - hello_plugin.py – Beispiel‑Plugin
+  - hello_plugin.py – Beispiel
 - tests/
-  - test_main.py – Unit‑Tests
+  - test_main.py – CLI
+  - test_cli_functions.py – Core
+  - test_plugin_loading.py – Plugin
+  - test_task_manager.py – Task
 - docs/
   - REPORT.md – dieser Bericht
 - Makefile, requirements.txt, data/README.md, logs/.gitkeep
 
-## Module & Funktionen
-- **core.cli**: `hello`, `sum_cmd`, `info`
-- **src.cli**: `load_plugin`, `run_plugin`, `main`
-- **plugins.hello_plugin**: `execute`
-- **utils.helper**: `log`, `read_json`, `write_json`
-- **core.task_manager**: `add_task`, `list_tasks`, `clear_tasks`
-
-## Funktionsprüfung
+## Funktionalität
 | Befehl | Erwartete Ausgabe | Status |
 |--------|-------------------|--------|
-| `hello` | „Hello, World!“ | ✅ |
-| `hello --name Alice` | „Hello, Alice!“ | ✅ |
-| `sum 1 2 3` | „Sum: 6“ | ✅ |
-| `info` | „This is a minimal CLI application.“ | ✅ |
-| `plugin hello_plugin` | „Hallo aus dem Plugin!“ | ✅ |
-
-## Probleme & Empfehlungen
-- Viele Funktionen fehlen ausführliche Docstrings.
-- Fehlerbehandlung in `load_plugin` ist minimal; ein fehlendes Plugin führt zu `FileNotFoundError`.
-- `utils.helper.log` schreibt immer in die Logdatei; für Tests könnte ein Mock sinnvoll sein.
-- Redundante `sys.path.append`‑Aufrufe in mehreren Modulen.
-- `requirements.txt` listet `click` und `rich`, werden aber nicht genutzt.
+| hello | „Hello, World!“ | ✅ |
+| hello --name Alice | „Hello, Alice!“ | ✅ |
+| sum 1 2 3 | „Sum: 6“ | ✅ |
+| info | „This is a minimal CLI application.“ | ✅ |
+| plugin hello_plugin | „Hallo aus dem Plugin!“ | ✅ |
 
 ## Testzusammenfassung
-- 4 Unit‑Tests ausgeführt.
-- 4/4 Tests bestanden.
-- Keine Fehler oder Warnungen.
+- 4 Testmodule
+- 20 Tests insgesamt
+- 20/20 bestanden
+- 0 Fehler, 0 Warnungen
+
+## Empfehlungen
+1. Füge ausführliche Docstrings zu allen öffentlichen Funktionen hinzu.
+2. Entferne das manuelle `sys.path.append` aus `src/cli.py` – benutze Paket‑Importe.
+3. Implementiere ein Logging‑Mock für Unit‑Tests, um Log‑Dateien zu vermeiden.
+4. Entferne nicht genutzte Abhängigkeiten `click` und `rich` aus `requirements.txt`.
+5. Füge einen Linter (z. B. flake8) hinzu, um Stil‑Konformität sicherzustellen.
+
+End of report.
