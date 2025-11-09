@@ -1,8 +1,17 @@
 import json
 import logging
 import sys
+import os
 
-logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(message)s')
+from core.config import LOG_FILE
+
+# Configure logging to write to the log file
+logging.basicConfig(
+    filename=LOG_FILE,
+    level=logging.INFO,
+    format='%(message)s',
+    filemode='a'
+)
 
 def log(message):
     logging.info(message)

@@ -5,7 +5,7 @@ import os
 
 class TestCLI(unittest.TestCase):
     def run_cli(self, args):
-        cmd = [sys.executable, os.path.join('src', 'main.py')] + args
+        cmd = [sys.executable, os.path.join('src', 'cli.py')] + args
         result = subprocess.run(cmd, capture_output=True, text=True)
         return result.stdout.strip(), result.stderr.strip(), result.returncode
 
