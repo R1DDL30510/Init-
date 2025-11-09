@@ -1,4 +1,6 @@
 def execute():
-    """Beispielplugin, das eine Nachricht loggt."""
+    """Beispielplugin, das eine Nachricht loggt und ausgibt."""
     from utils.helper import log
-    log("Hallo aus dem Plugin!")
+    message = "Hallo aus dem Plugin!"
+    log(message)
+    print(message)

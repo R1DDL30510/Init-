@@ -1,6 +1,5 @@
 import json
 import logging
-import sys
 import os
 
 from core.config import LOG_FILE
@@ -9,17 +8,34 @@ from core.config import LOG_FILE
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,
-    format='%(message)s',
+    format='%(asctime)s %(levelname)s: %(message)s',
     filemode='a'
 )
 
 def log(message):
-    logging.info(message)
+    """Schreibt eine Nachricht in die Logdatei."""
+    try:
+        logging.info(message)
+    except Exception as e:
+        # Falls Logging fehlschlägt, geben wir eine Warnung aus
+        print(f"Logging error: {e}")
 
 def read_json(path):
-    with open(path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    """Liest JSON aus einer Datei und gibt ein Python-Objekt zurück."""
+    if not os.path.isfile(path):
+        raise FileNotFoundError(f"JSON-Datei nicht gefunden: {path}")
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Ungültiges JSON in {path}: {e}") from e
+    except Exception as e:
+        raise RuntimeError(f"Fehler beim Lesen von {path}: {e}") from e
 
 def write_json(path, data):
-    with open(path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2)
+    """Schreibt ein Python-Objekt als JSON in eine Datei."""
+    try:
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        raise RuntimeError(f"Fehler beim Schreiben von {path}: {e}") from e

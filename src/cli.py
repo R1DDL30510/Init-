@@ -7,16 +7,22 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from core.cli import hello, sum_cmd, info
+from utils.helper import log
 
 def load_plugin(name):
     """Lädt ein Plugin aus dem plugins/ Verzeichnis."""
+    if not name or not isinstance(name, str) or not name.strip():
+        raise ValueError("Plugin-Name darf nicht leer sein.")
     plugin_dir = os.path.join(os.path.dirname(__file__), '..', 'plugins')
     plugin_file = os.path.join(plugin_dir, f'{name}.py')
     if not os.path.isfile(plugin_file):
         raise FileNotFoundError(f"Plugin '{name}' nicht gefunden.")
     spec = importlib.util.spec_from_file_location(name, plugin_file)
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    try:
+        spec.loader.exec_module(module)
+    except Exception as e:
+        raise RuntimeError(f"Fehler beim Laden des Plugins '{name}': {e}") from e
     return module
 
 def run_plugin(args):
@@ -25,9 +31,11 @@ def run_plugin(args):
         if hasattr(module, 'execute'):
             module.execute()
         else:
-            print(f"Plugin '{args.name}' hat keine execute() Funktion.")
+            raise AttributeError(f"Plugin '{args.name}' hat keine execute() Funktion.")
     except Exception as e:
-        print(f"Fehler beim Ausführen des Plugins '{args.name}': {e}")
+        error_msg = f"Fehler beim Ausführen des Plugins '{args.name}': {e}"
+        log(error_msg)
+        print(error_msg)
 
 def main():
     parser = argparse.ArgumentParser(description="Minimal CLI")
@@ -53,7 +61,13 @@ def main():
     parser_plugin.set_defaults(func=run_plugin)
 
     args = parser.parse_args()
-    args.func(args)
+    try:
+        args.func(args)
+    except Exception as e:
+        error_msg = f"Unbehandelter Fehler: {e}"
+        log(error_msg)
+        print(error_msg)
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
