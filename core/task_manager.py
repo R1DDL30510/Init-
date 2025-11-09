@@ -1,24 +1,44 @@
+from typing import List
+
 class TaskManager:
     """
     Simple in-memory job queue.
     """
-    def __init__(self):
-        self._tasks = []
 
-    def add_task(self, task):
+    def __init__(self) -> None:
         """
-        Add a task to the queue.
+        Initialisiert die interne Aufgabenliste.
         """
+        self._tasks: List[str] = []
+
+    def add_task(self, task: str) -> None:
+        """
+        Fügt eine Aufgabe zur Warteschlange hinzu.
+
+        Args:
+            task (str): Beschreibung der Aufgabe.
+
+        Raises:
+            TypeError: Wenn task kein String ist.
+            ValueError: Wenn die Aufgabe bereits existiert.
+        """
+        if not isinstance(task, str):
+            raise TypeError("Task must be a string.")
+        if task in self._tasks:
+            raise ValueError("Task already exists.")
         self._tasks.append(task)
 
-    def list_tasks(self):
+    def list_tasks(self) -> List[str]:
         """
-        Return a list of all tasks.
+        Gibt die aktuelle Aufgabenliste zurück.
+
+        Returns:
+            List[str]: Alle Aufgaben in der Reihenfolge ihrer Einfügung.
         """
         return list(self._tasks)
 
-    def clear_tasks(self):
+    def clear_tasks(self) -> None:
         """
-        Remove all tasks from the queue.
+        Löscht alle Aufgaben aus der Warteschlange.
         """
         self._tasks.clear()

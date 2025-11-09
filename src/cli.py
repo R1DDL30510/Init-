@@ -2,6 +2,8 @@ import argparse
 import importlib.util
 import os
 import sys
+from types import ModuleType
+from typing import Any
 
 # Ensure root package is importable
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -9,23 +11,47 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from core.cli import hello, sum_cmd, info
 from utils.helper import log
 
-def load_plugin(name):
-    """Lädt ein Plugin aus dem plugins/ Verzeichnis."""
+def load_plugin(name: str) -> ModuleType:
+    """
+    Lädt ein Plugin aus dem plugins/ Verzeichnis.
+
+    Args:
+        name (str): Name des Plugins ohne Dateiendung.
+
+    Returns:
+        ModuleType: Das geladene Plugin-Modul.
+
+    Raises:
+        ValueError: Wenn der Name leer oder kein String ist.
+        FileNotFoundError: Wenn die Plugin-Datei nicht existiert.
+        RuntimeError: Bei Fehlern beim Ausführen des Moduls.
+    """
     if not name or not isinstance(name, str) or not name.strip():
         raise ValueError("Plugin-Name darf nicht leer sein.")
     plugin_dir = os.path.join(os.path.dirname(__file__), '..', 'plugins')
+    if not os.path.isdir(plugin_dir):
+        raise FileNotFoundError(f"Plugin-Verzeichnis '{plugin_dir}' nicht gefunden.")
     plugin_file = os.path.join(plugin_dir, f'{name}.py')
     if not os.path.isfile(plugin_file):
         raise FileNotFoundError(f"Plugin '{name}' nicht gefunden.")
     spec = importlib.util.spec_from_file_location(name, plugin_file)
     module = importlib.util.module_from_spec(spec)
     try:
-        spec.loader.exec_module(module)
+        spec.loader.exec_module(module)  # type: ignore
     except Exception as e:
         raise RuntimeError(f"Fehler beim Laden des Plugins '{name}': {e}") from e
     return module
 
-def run_plugin(args):
+def run_plugin(args: argparse.Namespace) -> None:
+    """
+    Führt ein Plugin aus, das über die CLI aufgerufen wurde.
+
+    Args:
+        args (argparse.Namespace): Enthält das Plugin-Argument 'name'.
+
+    Side Effects:
+        Loggt Fehler und gibt sie auf stdout aus.
+    """
     try:
         module = load_plugin(args.name)
         if hasattr(module, 'execute'):
@@ -33,11 +59,16 @@ def run_plugin(args):
         else:
             raise AttributeError(f"Plugin '{args.name}' hat keine execute() Funktion.")
     except Exception as e:
-        error_msg = f"Fehler beim Ausführen des Plugins '{args.name}': {e}"
+        error_msg = f"Plugin '{args.name}' konnte nicht ausgeführt werden: {e}"
         log(error_msg)
         print(error_msg)
 
-def main():
+def main() -> None:
+    """
+    Hauptfunktion der CLI. Verarbeitet Subkommandos und ruft die jeweiligen
+    Funktionen auf. Bei unerwarteten Fehlern wird ein Log-Eintrag erstellt
+    und der Prozess mit Exit-Code 1 beendet.
+    """
     parser = argparse.ArgumentParser(description="Minimal CLI")
     subparsers = parser.add_subparsers(dest='command', required=True)
 
