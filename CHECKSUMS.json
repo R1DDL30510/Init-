@@ -1,0 +1,154 @@
+[
+  {
+    "path": ".aider.conf.yml",
+    "sha256": "ddeb03341b5e1dc2993b1b835f52c17d428aa5094e0a2e702c8547f7f5b1f7fc"
+  },
+  {
+    "path": ".githooks/pre-commit",
+    "sha256": "3111c700f3807f65abae89d96af7e8eb8b190972f00e63227eb25fc4d3909e0c"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/.aider.chat.history.md",
+    "sha256": "ce1b4779357a3186f603cc678eb07ebd92c9584ba842a4bb7a323b218677a0bf"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/.aider.input.history",
+    "sha256": "de9466794ac4dc2352ac9e98a7fb55ae5144fe55f7ba178d7c784335a6d2db86"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/1) docs/WORKFLOW.md",
+    "sha256": "5b67908df6d0df93910d2e8919b3d4225e08610d0ad8385123d1a8e7469ddf66"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/10) scripts/check.ps1",
+    "sha256": "6a7b7ab0ab30ded425f828b80edfc685581f2e379510b9af54130f908b85fc6e"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/11) scripts/check.sh",
+    "sha256": "e5aa951f68db7be43d4e058acbad866537e71f8242749ffb18f66e1191093b14"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/12) .githooks/pre-commit (ps1 + sh)",
+    "sha256": "ec088fde0df07485e428eafb7d2c1b02b76b3e3cb009a023d93a217d12deff3c"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/2) .aider.conf.yml",
+    "sha256": "ddeb03341b5e1dc2993b1b835f52c17d428aa5094e0a2e702c8547f7f5b1f7fc"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/3) Makefile",
+    "sha256": "56cd2da18c7b939940fbcd55c306b669ade707b900a9784172ffe69712a803fe"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/4) scripts/run.ps1",
+    "sha256": "ec50b7391162406c82453c039f77fad31750ed44ed620863d63144d9dd59a5cd"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/5) scripts/run.sh",
+    "sha256": "6fda4d39757f7e2959952254a0ca5183c54f4af30a9af453662ac822e0ed68af"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/6) scripts/test.ps1",
+    "sha256": "45da8663acb19c6b02509d91c54f2beb53eaf1baf4494399ca1d31fa6d6029bf"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/7) scripts/test.sh",
+    "sha256": "cbfc157effb6d0c47c96b4571aabcbfae0e4deeb1cf35013bc002a2873b8f39f"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/8) scripts/lint.ps1",
+    "sha256": "fc4fb79fca1a0e57c094388bb59a31dbf684f845126dc1516b0b93f07b4d9186"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/9) scripts/lint.sh",
+    "sha256": "d0dd0a042086389730fcf7c3335669fc5bc06fc7268e205d237415d8570d0b2d"
+  },
+  {
+    "path": ".rescue/_quarantine/20251109-052756/docs/WORKFLOW.md",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": ".rescue/_quarantine/Makefile.legacy",
+    "sha256": "56cd2da18c7b939940fbcd55c306b669ade707b900a9784172ffe69712a803fe"
+  },
+  {
+    "path": ".rescue/_quarantine/aider/.aider.chat.history.md",
+    "sha256": "ce1b4779357a3186f603cc678eb07ebd92c9584ba842a4bb7a323b218677a0bf"
+  },
+  {
+    "path": ".rescue/_quarantine/aider/.aider.input.history",
+    "sha256": "de9466794ac4dc2352ac9e98a7fb55ae5144fe55f7ba178d7c784335a6d2db86"
+  },
+  {
+    "path": ".rescue/_quarantine/docs/WORKFLOW.md",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": ".rescue/_quarantine/githooks/pre-commit-legacy.ps1",
+    "sha256": "ec088fde0df07485e428eafb7d2c1b02b76b3e3cb009a023d93a217d12deff3c"
+  },
+  {
+    "path": ".rescue/_quarantine/latest_snapshot.txt",
+    "sha256": "ab1ac401ac8d1fb5f337d526ace4f0f7b941cfbd1be88b87a43bd5713fabe4e4"
+  },
+  {
+    "path": "DIFF_PLAN.udiff",
+    "sha256": "d98c1c934692f9751cd3a9a69dea363eef180e4b16d502b0e79e24bf04afe156"
+  },
+  {
+    "path": "FIX_CHECKLIST.md",
+    "sha256": "876926566691b410b63c9ca66e349888598d2cb6350065b4ecd1e64812030e0f"
+  },
+  {
+    "path": "INVENTORY.json",
+    "sha256": "a0f3e25c31e26c1cdd071a4f17802ed230d00281134724ee7264547e66f2708a"
+  },
+  {
+    "path": "MOVE_PLAN.json",
+    "sha256": "da64d1baef619f6dcf0fd0b2f2db3953b80128c7c741735bdebf6e80bfd46233"
+  },
+  {
+    "path": "Makefile",
+    "sha256": "fc77acbc3175b219554215f6989ceacb86d5e6ec5e93e1065203374804d9a642"
+  },
+  {
+    "path": "RESCUE_REPORT.md",
+    "sha256": "8099572a0a40097492aacd88dbf0a7c10cc5e8671e469f35cdb846c2c8f068a8"
+  },
+  {
+    "path": "docs/WORKFLOW.md",
+    "sha256": "5b67908df6d0df93910d2e8919b3d4225e08610d0ad8385123d1a8e7469ddf66"
+  },
+  {
+    "path": "scripts/check.ps1",
+    "sha256": "91d6ecdf11150d10136988db652066ec5e87e6e2373330b2f12f7cb06fe720a5"
+  },
+  {
+    "path": "scripts/check.sh",
+    "sha256": "47113dd65b63f94611d80a17aea170c7ff8efc12e05183ecb0547fe9a5a716db"
+  },
+  {
+    "path": "scripts/lint.ps1",
+    "sha256": "f711bcdcaf6666934141484f8bcdafb9e6ae527773c56ad55d974d58393b8465"
+  },
+  {
+    "path": "scripts/lint.sh",
+    "sha256": "41fbd1b3c42029da743dc01b491fed8e6812a892991ab99cb1c4b2fb7cc14185"
+  },
+  {
+    "path": "scripts/run.ps1",
+    "sha256": "9f3a3f39fa7d8454cee875d4b6ae579742195dfa7f3299d22cc415150b43b57d"
+  },
+  {
+    "path": "scripts/run.sh",
+    "sha256": "62e8a9f0e6d465f4d608ececd37a6bce9a0dc27ecfb78bf0b6a18dea922fa824"
+  },
+  {
+    "path": "scripts/test.ps1",
+    "sha256": "2af58305073487e9f645d0a33e11a605955cc5c9423744228571ab5ec85c56df"
+  },
+  {
+    "path": "scripts/test.sh",
+    "sha256": "40ff9eed3ba4f148ba14e421a4710ec0b47cecd5df1c4b3fa53a0432a1328632"
+  }
+]

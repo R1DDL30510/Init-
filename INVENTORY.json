@@ -1,0 +1,442 @@
+[
+  {
+    "path": ".aider.chat.history.md",
+    "size": 191760,
+    "sha256": "ce1b4779357a3186f603cc678eb07ebd92c9584ba842a4bb7a323b218677a0bf",
+    "first_line": "",
+    "filetype": "markdown",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": ".aider.input.history",
+    "size": 17221,
+    "sha256": "de9466794ac4dc2352ac9e98a7fb55ae5144fe55f7ba178d7c784335a6d2db86",
+    "first_line": "",
+    "filetype": "text",
+    "eol": "LF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": ".aider.tags.cache.v4/cache.db",
+    "size": 49152,
+    "sha256": "726e9bacee52df887e08559aceb70f95a07277044daa9232735d748e9a09e7a1",
+    "first_line": "",
+    "filetype": "binary",
+    "eol": "binary",
+    "encoding": "binary",
+    "is_executable": false
+  },
+  {
+    "path": ".bash_profile",
+    "size": 61,
+    "sha256": "8ad9618661770176e0f0ea7ebf0a13328efcaa808cc0e10ceb2f94241ab7cc34",
+    "first_line": "export HOME=/mnt/c/Users/garvis.G1MVP/myfiles/node1",
+    "filetype": "text",
+    "eol": "LF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": ".bashrc",
+    "size": 18,
+    "sha256": "97fbe1f2a9e930e4ce0fe2bc0ec15b829a97600aafbf951e3fd2e8847c93d1b4",
+    "first_line": "alias ll=\"ls -al\"",
+    "filetype": "text",
+    "eol": "LF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": ".gitignore",
+    "size": 9,
+    "sha256": "574f87d8cf413404cdcc0b253faf7bcce22ec014099099203f4214707f5301af",
+    "first_line": ".aider*",
+    "filetype": "text",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "1) docs/WORKFLOW.md",
+    "size": 2433,
+    "sha256": "5b67908df6d0df93910d2e8919b3d4225e08610d0ad8385123d1a8e7469ddf66",
+    "first_line": "# Aider Workflow Runbook",
+    "filetype": "markdown",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "10) scripts/check.ps1",
+    "size": 90,
+    "sha256": "6a7b7ab0ab30ded425f828b80edfc685581f2e379510b9af54130f908b85fc6e",
+    "first_line": "# Placeholder for service health checks",
+    "filetype": "powershell",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "11) scripts/check.sh",
+    "size": 82,
+    "sha256": "e5aa951f68db7be43d4e058acbad866537e71f8242749ffb18f66e1191093b14",
+    "first_line": "# Placeholder for service health checks",
+    "filetype": "bash",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "12) .githooks/pre-commit (ps1 + sh)",
+    "size": 206,
+    "sha256": "ec088fde0df07485e428eafb7d2c1b02b76b3e3cb009a023d93a217d12deff3c",
+    "first_line": "@if ($IsWindows) { .\\scripts\\run_tests_and_lint.ps1 } else { ./scripts/run_tests_and_lint.sh }",
+    "filetype": "text",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "2) .aider.conf.yml",
+    "size": 284,
+    "sha256": "ddeb03341b5e1dc2993b1b835f52c17d428aa5094e0a2e702c8547f7f5b1f7fc",
+    "first_line": "profiles:",
+    "filetype": "yaml",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "3) Makefile",
+    "size": 442,
+    "sha256": "56cd2da18c7b939940fbcd55c306b669ade707b900a9784172ffe69712a803fe",
+    "first_line": ".PHONY: run plan test lint check commit",
+    "filetype": "text",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "4) scripts/run.ps1",
+    "size": 47,
+    "sha256": "ec50b7391162406c82453c039f77fad31750ed44ed620863d63144d9dd59a5cd",
+    "first_line": "python -m src.cli",
+    "filetype": "powershell",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "5) scripts/run.sh",
+    "size": 28,
+    "sha256": "6fda4d39757f7e2959952254a0ca5183c54f4af30a9af453662ac822e0ed68af",
+    "first_line": "python -m src.cli",
+    "filetype": "bash",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "6) scripts/test.ps1",
+    "size": 66,
+    "sha256": "45da8663acb19c6b02509d91c54f2beb53eaf1baf4494399ca1d31fa6d6029bf",
+    "first_line": "python -m unittest discover -s tests",
+    "filetype": "powershell",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "7) scripts/test.sh",
+    "size": 47,
+    "sha256": "cbfc157effb6d0c47c96b4571aabcbfae0e4deeb1cf35013bc002a2873b8f39f",
+    "first_line": "python -m unittest discover -s tests",
+    "filetype": "bash",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "8) scripts/lint.ps1",
+    "size": 343,
+    "sha256": "fc4fb79fca1a0e57c094388bb59a31dbf684f845126dc1516b0b93f07b4d9186",
+    "first_line": "# scripts/lint.ps1",
+    "filetype": "powershell",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "9) scripts/lint.sh",
+    "size": 37,
+    "sha256": "d0dd0a042086389730fcf7c3335669fc5bc06fc7268e205d237415d8570d0b2d",
+    "first_line": "ruff check . || pyflakes .",
+    "filetype": "bash",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "AGENTS.md",
+    "size": 2668,
+    "sha256": "4d757f7183b970710025d37f23d6392a923c7f0532ac769b6c34098f09ffa939",
+    "first_line": "# Repository Guidelines",
+    "filetype": "markdown",
+    "eol": "Mixed",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "core/__init__.py",
+    "size": 28,
+    "sha256": "9d5ede216834fbe9772a50100e5f3b3d5f272ccb18cd2e31f104494afc71585c",
+    "first_line": "# core package initializer",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "core/cli.py",
+    "size": 1239,
+    "sha256": "6767410d0a119bfdf65d711bfbb0ed29cd0fd44bd8c846d7ec5e295ba1a21b0c",
+    "first_line": "from typing import Any",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "core/config.py",
+    "size": 306,
+    "sha256": "9fc55b3083d1987e4d300ca4a44b9caa410b66483fc1c1cecb6a7c9358f3f2a1",
+    "first_line": "import os",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "core/task_manager.py",
+    "size": 1179,
+    "sha256": "6b7ec65ea82a0ece3b57f16192d09f78457017487e1251a509964965c64f0f34",
+    "first_line": "from typing import List",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "data/README.md",
+    "size": 63,
+    "sha256": "678a0b6f95196f501650f4e43531f8c8496ba98fbdba89e5113884e712e9ecc3",
+    "first_line": "# Data Folder",
+    "filetype": "markdown",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "docs/AIDER_PIPELINE.md",
+    "size": 1944,
+    "sha256": "e69d64ed9a4b1a6f173db16ead7e4dd9422c81914f38a03c096378510768fbde",
+    "first_line": "# OPTIMAL PIPELINE v2  GARVIS Node Learning Loop",
+    "filetype": "markdown",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "docs/REPORT.md",
+    "size": 1417,
+    "sha256": "6c1e59170baab1a29ccac9ab7a915a6cd043f4073784a35d3bde22fcdea99bb6",
+    "first_line": "# Projektbericht",
+    "filetype": "markdown",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "docs/WORKFLOW.md",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "first_line": "",
+    "filetype": "markdown",
+    "eol": "none",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "logs/.gitkeep",
+    "size": 58,
+    "sha256": "aaba8d552efdd56679d17f5d75571de34d55a46a50ac36785eb854fd4dc0f712",
+    "first_line": "# This file keeps the logs directory in version control.",
+    "filetype": "text",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "Makefile",
+    "size": 892,
+    "sha256": "0b24ad5f85190ec5e7763d05e10d82e5d3be28425169cb3d9607bcbe75bfc30e",
+    "first_line": ".PHONY: help test lint check",
+    "filetype": "text",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "plugins/__init__.py",
+    "size": 38,
+    "sha256": "9765b0681ce2cf9a04e1ee640e78fd7a6cc2bdd9f7feeb195d05aa96bc2671f5",
+    "first_line": "# Initialisierung des plugins-Pakets",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "plugins/hello_plugin.py",
+    "size": 192,
+    "sha256": "5259fd4583f59fbd6f394efd93b406a3a6e609339b1835223a2a062dcd2193c3",
+    "first_line": "def execute():",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "PROMPT_RESCUE.codex",
+    "size": 9278,
+    "sha256": "5e63c11991ea35b2a612da5cc34c7177420b9c9e216a872b1688f2ebe9fb3db9",
+    "first_line": "SYSTEM: You are a local repository janitor for a privacy-first project. Goal: deterministically CLEAN UP, SORT, and RESCUE a messy repo after Aider edits. Never guess; propose first, then apply exactly what was approved. Produce artifacts and logs for audit.",
+    "filetype": "text",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "requirements.txt",
+    "size": 13,
+    "sha256": "d4e7ffda347deca314a4e6f480ac0b553ae419dbfa1ecf5b57d3eab8496a3a61",
+    "first_line": "click",
+    "filetype": "text",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "src/__init__.py",
+    "size": 27,
+    "sha256": "763c9d203f166157b0445f2c4ce6c86ee8c31cfda3452e2184cde06f28e3dda7",
+    "first_line": "# src package initializer",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "src/cli.py",
+    "size": 3659,
+    "sha256": "129683ad4f3735ab2c0b26ec11f17bd0a2c5265932642a6ee58a7b46fb0d4011",
+    "first_line": "import argparse",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "src/main.py",
+    "size": 1231,
+    "sha256": "62de4d27d6da1f9553c67ace3f0fd8e5692b97448aa15039a714406c907313aa",
+    "first_line": "import argparse",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "tests/__init__.py",
+    "size": 29,
+    "sha256": "e4d07153b4949daa631ab13b9c27fbba861a04a47661b084e98da664a91ceb73",
+    "first_line": "# tests package initializer",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "tests/test_cli_functions.py",
+    "size": 2956,
+    "sha256": "0d73cf029b44a902ab69e1b29e77cd0d455ddc57592cdd049703643fb18c8865",
+    "first_line": "import unittest",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "tests/test_main.py",
+    "size": 1088,
+    "sha256": "bbe5e56b483d711863ed4c412a2e05d7b5993b12214761aecfeaa639d3d843c4",
+    "first_line": "import unittest",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "tests/test_plugin_loading.py",
+    "size": 1897,
+    "sha256": "4317774f5a04ee8da18f31d14ab9ed390d513fd6ade9db204dad8a72772fb8b1",
+    "first_line": "import unittest",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "tests/test_task_manager.py",
+    "size": 667,
+    "sha256": "1fbca0f4042e3e5b2f072911ab467854cfd1046c8ca7eb57ba42d54d0a38a8db",
+    "first_line": "import unittest",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "utils/__init__.py",
+    "size": 29,
+    "sha256": "385101f896dbbb251803056347f4de0e460772fa1255fe10e0a92d4dfb1380c0",
+    "first_line": "# utils package initializer",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "utils/helper.py",
+    "size": 2143,
+    "sha256": "b4c53e96dfa31f91f4886d9eac1b0557e71ad42b2b483301e2c2b1caac29bcc2",
+    "first_line": "import json",
+    "filetype": "python",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  },
+  {
+    "path": "v1",
+    "size": 71,
+    "sha256": "8d7eb9f90ea988c96a92c1cb6aa047777eef89e15c69de60293412c254d8a1d9",
+    "first_line": "/drop",
+    "filetype": "text",
+    "eol": "CRLF",
+    "encoding": "utf-8",
+    "is_executable": false
+  }
+]

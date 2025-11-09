@@ -1,0 +1,101 @@
+--- a/scripts/lint.ps1
++++ b/scripts/lint.ps1
+@@
+-# scripts/lint.ps1
+-Set-StrictMode -Version Latest
+-$ErrorActionPreference = 'Stop'
+-
+-ruff check .
+-if ($LASTEXITCODE -ne 0) {
+-    pyflakes .
+-    if ($LASTEXITCODE -ne 0) {
+-        Write-Output "?????????? ?????? ??????????."
+-        exit 1
+-    }
+-}
+-
+-Write-Output "??? ?????????? ??????."
++Set-StrictMode -Version Latest
++$ErrorActionPreference = 'Stop'
++
++ruff check .
++if ($LASTEXITCODE -ne 0) {
++    Write-Output "ruff reported issues; falling back to pyflakes."
++    pyflakes .
++    if ($LASTEXITCODE -ne 0) {
++        Write-Output "Lint errors detected."
++        exit 1
++    }
++}
++
++Write-Output "No lint issues detected."
++exit 0
+--- a/Makefile
++++ b/Makefile
+@@
+-.PHONY: help test lint check
+-.ONESHELL:
+-SHELL := bash
+-
+-help: ## Show help
+-    @grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS=":.*?## "}; {printf "  %-12s %s\\n", $$1, $$2}'
+-
+-test: ## Run tests
+-    @if [ -x scripts/test.sh ]; then \\
+-      scripts/test.sh; \\
+-    elif command -v pwsh >/dev/null 2>&1 && [ -f scripts/test.ps1 ]; then \\
+-      pwsh -NoLogo -NoProfile -File scripts/test.ps1; \\
+-    else \\
+-      echo "No test script found (scripts/test.sh or scripts/test.ps1)"; exit 1; \\
+-    fi
+-
+-lint: ## Run linters
+-    @if [ -x scripts/lint.sh ]; then \\
+-      scripts/lint.sh; \\
+-    elif command -v pwsh >/dev/null 2>&1 && [ -f scripts/lint.ps1 ]; then \\
+-      pwsh -NoLogo -NoProfile -File scripts/lint.ps1; \\
+-    else \\
+-      echo "No lint script found (scripts/lint.sh or scripts/lint.ps1)"; exit 1; \\
+-    fi
+-
+-check: ## Tests + Lint
+-    @$(MAKE) test
+-    @$(MAKE) lint
+-    @echo "All checks passed."
++.PHONY: help test lint check
++.ONESHELL:
++SHELL := bash
++
++help: ## Show help
++    @grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS=":.*?## "}; {printf "  %-12s %s\\n", $$1, $$2}'
++
++test: ## Run tests
++    @if [ -x ./scripts/test.sh ]; then \\
++      ./scripts/test.sh; \\
++    elif command -v pwsh >/dev/null 2>&1 && [ -f ./scripts/test.ps1 ]; then \\
++      pwsh -NoLogo -NoProfile -File ./scripts/test.ps1; \\
++    else \\
++      echo "No test script found (scripts/test.sh or scripts/test.ps1)"; exit 1; \\
++    fi
++
++lint: ## Run linters
++    @if [ -x ./scripts/lint.sh ]; then \\
++      ./scripts/lint.sh; \\
++    elif command -v pwsh >/dev/null 2>&1 && [ -f ./scripts/lint.ps1 ]; then \\
++      pwsh -NoLogo -NoProfile -File ./scripts/lint.ps1; \\
++    else \\
++      echo "No lint script found (scripts/lint.sh or scripts/lint.ps1)"; exit 1; \\
++    fi
++
++check: ## Tests + Lint
++    @$(MAKE) test
++    @$(MAKE) lint
++    @echo "All checks passed."
++--- /dev/null
+++++ b/.githooks/pre-commit
++@@
+++#!/usr/bin/env bash
+++set -euo pipefail
+++
+++echo "[pre-commit] make check"
+++make check

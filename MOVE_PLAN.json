@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "repo_root": "C:/Users/garvis.G1MVP/myfiles/node1",
+    "generated_at_utc": "2025-11-09T05:26:39Z",
+    "default_branch": "main",
+    "backup_dir": ".rescue/_quarantine",
+    "shell": "pwsh"
+  },
+  "create_directories": [
+    "scripts",
+    ".githooks",
+    ".rescue/_quarantine",
+    ".rescue/_quarantine/aider",
+    ".rescue/_quarantine/docs",
+    ".rescue/_quarantine/scripts",
+    ".rescue/_quarantine/githooks"
+  ],
+  "operations": [
+    {
+      "type": "backup",
+      "src": "docs/WORKFLOW.md",
+      "dst": ".rescue/_quarantine/docs/WORKFLOW.md",
+      "reason": "Preserve placeholder doc before replacing with curated version."
+    },
+    {
+      "type": "move",
+      "src": "1) docs/WORKFLOW.md",
+      "dst": "docs/WORKFLOW.md",
+      "reason": "Restore authored workflow guide into canonical docs directory."
+    },
+    {
+      "type": "move",
+      "src": "2) .aider.conf.yml",
+      "dst": ".aider.conf.yml",
+      "reason": "Normalize aider config filename at repo root."
+    },
+    {
+      "type": "move",
+      "src": "4) scripts/run.ps1",
+      "dst": "scripts/run.ps1",
+      "reason": "Consolidate PowerShell runner into scripts/."
+    },
+    {
+      "type": "move",
+      "src": "5) scripts/run.sh",
+      "dst": "scripts/run.sh",
+      "reason": "Consolidate Bash runner into scripts/."
+    },
+    {
+      "type": "move",
+      "src": "6) scripts/test.ps1",
+      "dst": "scripts/test.ps1",
+      "reason": "Consolidate PowerShell test wrapper into scripts/."
+    },
+    {
+      "type": "move",
+      "src": "7) scripts/test.sh",
+      "dst": "scripts/test.sh",
+      "reason": "Consolidate Bash test wrapper into scripts/."
+    },
+    {
+      "type": "move",
+      "src": "8) scripts/lint.ps1",
+      "dst": "scripts/lint.ps1",
+      "reason": "Consolidate PowerShell lint wrapper into scripts/."
+    },
+    {
+      "type": "move",
+      "src": "9) scripts/lint.sh",
+      "dst": "scripts/lint.sh",
+      "reason": "Consolidate Bash lint wrapper into scripts/."
+    },
+    {
+      "type": "move",
+      "src": "10) scripts/check.ps1",
+      "dst": "scripts/check.ps1",
+      "reason": "Consolidate PowerShell check wrapper into scripts/."
+    },
+    {
+      "type": "move",
+      "src": "11) scripts/check.sh",
+      "dst": "scripts/check.sh",
+      "reason": "Consolidate Bash check wrapper into scripts/."
+    },
+    {
+      "type": "move",
+      "src": "3) Makefile",
+      "dst": ".rescue/_quarantine/Makefile.legacy",
+      "reason": "Archive PowerShell-heavy Makefile before replacement."
+    },
+    {
+      "type": "move",
+      "src": "12) .githooks/pre-commit (ps1 + sh)",
+      "dst": ".rescue/_quarantine/githooks/pre-commit-legacy.ps1",
+      "reason": "Retire ad-hoc hook with spaces in filename before writing normalized hook."
+    },
+    {
+      "type": "move",
+      "src": ".aider.chat.history.md",
+      "dst": ".rescue/_quarantine/aider/.aider.chat.history.md",
+      "reason": "Quarantine aider chat log per policy."
+    },
+    {
+      "type": "move",
+      "src": ".aider.input.history",
+      "dst": ".rescue/_quarantine/aider/.aider.input.history",
+      "reason": "Quarantine aider input history per policy."
+    }
+  ],
+  "remove_empty_dirs": [
+    "1) docs",
+    "4) scripts",
+    "5) scripts",
+    "6) scripts",
+    "7) scripts",
+    "8) scripts",
+    "9) scripts",
+    "10) scripts",
+    "11) scripts",
+    "12) .githooks"
+  ]
+}
