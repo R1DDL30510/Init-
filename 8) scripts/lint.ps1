@@ -1,7 +1,12 @@
+# scripts/lint.ps1
 try {
-    ruff check . -ErrorAction Stop || pyflakes .
+    ruff check . -ErrorAction Stop
 } catch {
-    Write-Output "Линтерские ошибки обнаружены."
-    exit 1
+    pyflakes .
+    if ($LASTEXITCODE -ne 0) {
+        Write-Output "Линтерские ошибки обнаружены."
+        exit 1
+    }
 }
+
 Write-Output "Нет линтерских ошибок."
